@@ -60,4 +60,4 @@ pnpm build-safari
 pnpm check:safari-build
 ```
 
-上述命令不会删除 `extension-safari-macos/`。确需重建 Xcode 工程时，先退出 Xcode 与 BewlyCat Safari 包含应用，备份并核对该目录只含生成工程，再重新运行 `pnpm prepare-safari`，为两个 target 重新选择同一 Team。若不再使用，可在 Safari 设置中停用扩展；删除证书或 Apple Account 属于独立的系统账户操作，不应作为普通项目清理步骤执行。
+本次已在独立临时工作树中按从新到旧的顺序回滚全部 5 个实施提交，文件树能够精确恢复为 `main`，随后删除了临时工作树，当前成果分支未受影响。上述生成物命令不会删除 `extension-safari-macos/`。确需重建 Xcode 工程时，先退出 Xcode 与 BewlyCat Safari 包含应用，备份并核对该目录只含生成工程，再重新运行 `pnpm prepare-safari`，为两个 target 重新选择同一 Team。若不再使用，可在 Safari 设置中停用扩展；删除证书或 Apple Account 属于独立的系统账户操作，不应作为普通项目清理步骤执行。
