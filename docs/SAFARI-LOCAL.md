@@ -2,6 +2,8 @@
 
 本文只描述 macOS Safari 27 的本地自用流程，不包含 iOS、TestFlight 或 App Store 发布。
 
+本地容器使用 bundle identifier `com.xuan.BewlyCat-Safari`，扩展 target 使用其 `.Extension` 子标识。
+
 ## 前置环境
 
 - macOS 27、Safari 27、Xcode 27

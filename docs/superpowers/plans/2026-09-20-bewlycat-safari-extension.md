@@ -293,14 +293,14 @@ Expected: pre-commit hook 通过，提交中不含生成目录。
 
 **Interfaces:**
 - Consumes: 已通过 `check:safari-build` 的 `extension-safari/`。
-- Produces: 名为 `BewlyCat Safari`、bundle identifier 为 `com.xuan.bewlycat` 的本地 macOS Xcode 工程。
+- Produces: 名为 `BewlyCat Safari`、bundle identifier 为 `com.xuan.BewlyCat-Safari` 的本地 macOS Xcode 工程。
 
 - [ ] **Step 1: 更新转换脚本到当前命令名**
 
 将现有 `convert-safari` 改成非交互、只生成 macOS Swift 容器且不自动打开 Xcode 的命令：
 
 ```text
-"convert-safari": "xcrun safari-web-extension-packager ./extension-safari --project-location ./extension-safari-macos --app-name 'BewlyCat Safari' --bundle-identifier com.xuan.bewlycat --swift --macos-only --no-prompt --no-open"
+"convert-safari": "xcrun safari-web-extension-packager ./extension-safari --project-location ./extension-safari-macos --app-name 'BewlyCat Safari' --bundle-identifier com.xuan.BewlyCat-Safari --swift --macos-only --no-prompt --no-open"
 ```
 
 不要添加 `--force` 或 `--copy-resources`：前者可能覆盖已配置签名的工程，后者会让 Xcode 使用脱离当前构建目录的副本。
