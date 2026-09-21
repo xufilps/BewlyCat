@@ -36,6 +36,7 @@
     "clear": "rimraf --glob extension extension.*",
     "clear-firefox": "rimraf --glob extension-firefox extension-firefox.*",
     "clear-safari": "rimraf --glob extension-safari extension-safari.*",
+    "check:safari-build": "node scripts/check-safari-build.mjs",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "typecheck": "vue-tsc",

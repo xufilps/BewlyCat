@@ -142,6 +142,7 @@ Expected: 只提交本计划；执行前确认用户已授权提交。
 ```js
 import fs from 'node:fs'
 import path from 'node:path'
+import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
