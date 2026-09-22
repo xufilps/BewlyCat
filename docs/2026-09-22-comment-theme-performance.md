@@ -19,3 +19,9 @@
 仓库根目录 `LICENSE` 禁止将插件封装为独立客户端，也禁止以桌面或移动 App 等形式发布、分发或提供下载。本次 GitHub 提交只包含源代码和本文档；本机构建产物留在 Git 忽略目录，不加入提交、Release 或可公开下载的附件。Safari 的 Xcode containing app 若用于本机扩展注册，仅按本机自用流程处理，不作为独立客户端或分发安装包交付。
 
 本地计划保存在被 Git 忽略的 `UI-FIX-PLAN.md`。Safari 既有签名工程位于另一工作树，当前 `main` 的源码改动不会自动进入该工程或已生成的扩展。
+
+## 2026-09-22 Safari 本机交付记录
+
+将已推送的 `main` 整合到本机 `feat/safari-extension` 工作树后，保留旧 `extension-safari/` 的本机备份与 SHA-256 清单，再执行 `pnpm build-safari`、`pnpm check:safari-build`、`pnpm lint` 和 `pnpm typecheck`，均通过。随后使用既有 Xcode 工程完成本机 Apple Development 签名构建，`codesign --verify --deep --strict` 通过；签入应用的 manifest、评论样式和注入脚本与本次构建产物哈希一致。
+
+本机自用的 Safari 承载应用位于 `~/Applications/BewlyCat Safari.app`。它用于在 Safari 中注册浏览器扩展，不是独立客户端；没有生成 dmg、zip、Release 附件或公开下载地址。此次未打开真实 Bilibili 页面，也未验证 Safari 内的最终评论区视觉效果；应用启用状态和页面效果仍需在本机确认。
