@@ -12,6 +12,8 @@
 
 在本地 `main` 工作目录执行了相关文件的 ESLint、`pnpm typecheck`、评论 SCSS 编译与 `git diff --check`，均通过。项目没有独立的单元测试套件；本次没有操作真实 Bilibili 页面，最终视觉效果和实际滚动性能仍需在真实浏览器中确认。
 
+推送前的完整 `pnpm lint` 曾扫描到未跟踪的 `docs/superpowers/plans/` 代理计划，并将 Markdown 代码示例当作源码解析。`eslint.config.mjs` 现仅排除该计划目录；源码与其他文档仍经过原有 lint 流程。
+
 ## 本机自用与许可边界
 
 仓库根目录 `LICENSE` 禁止将插件封装为独立客户端，也禁止以桌面或移动 App 等形式发布、分发或提供下载。本次 GitHub 提交只包含源代码和本文档；本机构建产物留在 Git 忽略目录，不加入提交、Release 或可公开下载的附件。Safari 的 Xcode containing app 若用于本机扩展注册，仅按本机自用流程处理，不作为独立客户端或分发安装包交付。
