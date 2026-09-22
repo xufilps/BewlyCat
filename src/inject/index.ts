@@ -557,6 +557,14 @@ else if (shouldInitializePageScript) {
       css: `
         ${COMMENT_WIDESCREEN_COMPACT_METADATA_CSS}
 
+        :host {
+          color: var(--bew-comment-text, inherit);
+        }
+
+        #body {
+          color: var(--bew-comment-text, inherit) !important;
+        }
+
         #body.dark .tag {
           --bili-comment-tag-color: var(--bew-comment-tag-color, var(--bili-comment-tag-color-dark)) !important;
           --bili-comment-tag-bg: var(--bew-comment-tag-bg, var(--bili-comment-tag-bg-dark)) !important;
@@ -569,7 +577,14 @@ else if (shouldInitializePageScript) {
     },
     'bili-comment-reply-renderer': {
       id: 'bewly-comment-reply-renderer-style',
-      css: COMMENT_WIDESCREEN_COMPACT_METADATA_CSS,
+      css: `
+        ${COMMENT_WIDESCREEN_COMPACT_METADATA_CSS}
+
+        :host,
+        #body {
+          color: var(--bew-comment-text, inherit) !important;
+        }
+      `,
     },
     'bili-comment-action-buttons-renderer': {
       id: 'bewly-comment-action-buttons-style',
@@ -591,6 +606,21 @@ else if (shouldInitializePageScript) {
     'bili-comment-box': {
       id: 'bewly-comment-box-style',
       css: `
+        :host {
+          color: var(--bew-comment-text, inherit);
+        }
+
+        #editor {
+          color: var(--bew-comment-text, inherit) !important;
+          background-color: var(--bew-comment-editor-surface, var(--bg2, #fff)) !important;
+        }
+
+        #editor :is(textarea, [contenteditable]) {
+          color: var(--bew-comment-text, inherit) !important;
+          background-color: transparent !important;
+          caret-color: var(--bew-comment-text, currentColor);
+        }
+
         /* 表情/@/图片等工具按钮与编辑框共用同一条适配边框（B 站原生为 var(--Ga1)） */
         #editor:not(:hover):not(.active),
         .tool-btn {
