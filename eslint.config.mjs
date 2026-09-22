@@ -19,6 +19,7 @@ export default antfu(
       '**/extension/**',
       '**/extension-firefox/**',
       '**/.kiro/**',
+      'docs/superpowers/plans/**',
     ],
     rules: {
       'vue/max-attributes-per-line': [

@@ -41,6 +41,15 @@ function updateGuides() {
     return
   }
 
+  const rowsById = new Map(props.rows.map(row => [row.comment.id, row]))
+  const childrenByParent = new Map<string, CommentRow[]>()
+  for (const row of props.rows) {
+    if (!row.parentId)
+      continue
+    const children = childrenByParent.get(row.parentId) ?? []
+    children.push(row)
+    childrenByParent.set(row.parentId, children)
+  }
   const anchors = new Map<string, CommentReplyAvatarAnchor>()
   for (const rowElement of Array.from(element.querySelectorAll<HTMLElement>('[data-comment-id]'))) {
     const avatar = rowElement.querySelector<HTMLElement>('[data-comment-avatar]')
@@ -48,7 +57,7 @@ function updateGuides() {
       continue
     const avatarRect = avatar.getBoundingClientRect()
     const footer = rowElement.querySelector('footer')?.getBoundingClientRect()
-    const row = props.rows.find(row => row.comment.id === rowElement.dataset.commentId)
+    const row = rowsById.get(rowElement.dataset.commentId ?? '')
     const centerY = avatarRect.top + avatarRect.height / 2 - rect.top
     anchors.set(rowElement.dataset.commentId!, {
       bottom: row?.hideBody ? centerY : avatarRect.bottom - rect.top,
@@ -63,8 +72,7 @@ function updateGuides() {
     const parentAnchor = anchors.get(row.comment.id)
     if (!row.hasChildren || !parentAnchor)
       continue
-    const childAnchors = props.rows
-      .filter(child => child.parentId === row.comment.id)
+    const childAnchors = (childrenByParent.get(row.comment.id) ?? [])
       .map(child => anchors.get(child.comment.id))
       .filter((anchor): anchor is CommentReplyAvatarAnchor => Boolean(anchor && anchor.left > parentAnchor.centerX))
     const branch: CommentReplyTreeBranch = {
