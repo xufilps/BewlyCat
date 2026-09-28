@@ -4,7 +4,6 @@
 
   // 原生评论的正文与发表框位于不同的 Shadow DOM；让两者继承同一组主题色。
   --bew-comment-text: var(--bew-text-1);
-  --bew-comment-muted-text: var(--bew-text-2);
   --bew-comment-surface: var(--bew-bg);
   --bew-comment-editor-surface: var(--bew-content-solid);
 
@@ -80,15 +79,6 @@
 
   // #region dark mode adaption part
   &.dark {
-    bili-comments {
-      // Safari 中评论宿主会把 BewlyCat 的通用 token 重置为浅色；
-      // 评论专用 token 在页面根节点已解析为深色主题，再传给原生组件变量。
-      --bg1: var(--bew-comment-surface) !important;
-      --text1: var(--bew-comment-text) !important;
-      --text2: var(--bew-comment-muted-text) !important;
-      --text3: var(--bew-comment-muted-text) !important;
-    }
-
     :is(bili-comments, .bili-comment.browser-pc) {
       color: var(--bew-comment-text);
       background-color: var(--bew-comment-surface);
